@@ -10,8 +10,6 @@ import 'easymde/dist/easymde.min.css';
 export const EditPostPage = () => {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
-    const [oldImage, setOldImage] = useState('');
-    const [newImage, setNewImage] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,7 +19,6 @@ export const EditPostPage = () => {
         const { data } = await axios.get(`/posts/${params.id}`)
         setTitle(data.title)
         setText(data.text)
-        setOldImage(data.imageUrl)
     }, [params.id]);
 
     const submitHandler = () => {
@@ -30,7 +27,6 @@ export const EditPostPage = () => {
             updatedPost.append('title', title)
             updatedPost.append('text', text)
             updatedPost.append('id', params.id)
-            updatedPost.append('image', newImage)
             dispatch(updatePost(updatedPost))
             navigate('/')
         } catch (error) {

@@ -11,7 +11,6 @@ export const CreatePostPage = () => {
 
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
-    const [image, setImage] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,7 +20,6 @@ export const CreatePostPage = () => {
             const data = new FormData()
             data.append('title', title)
             data.append('text', text)
-            data.append('image', image)
             dispatch(createPost(data))
             navigate('/')
         } catch (error) {

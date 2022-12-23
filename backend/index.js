@@ -3,19 +3,28 @@ import mongoose from 'mongoose';
 import cors from "cors";
 import fileUpload from 'express-fileupload';
 
-import { register, login, authMe } from "./controllers/auth.js";
-import { checkAuth } from "./utils/checkAuth.js";
-import { createPost, getAllPosts, getOnePosts, getMyPosts, deletePost, updatePost, getPostComments } from './controllers/posts.js';
-import { createComment } from './controllers/comments.js';
+import {register, login, authMe} from "./controllers/auth.js";
+import {checkAuth} from "./utils/checkAuth.js";
+import {
+    createPost,
+    getAllPosts,
+    getOnePosts,
+    getMyPosts,
+    deletePost,
+    updatePost,
+    getPostComments
+} from './controllers/posts.js';
+import {createComment} from './controllers/comments.js';
 
+
+const app = express();
 
 mongoose.set('strictQuery', false)
-    .connect('mongodb+srv://admin:admin2022@alatoshnikicluster.cly0zgi.mongodb.net/alatoshniki_blog?retryWrites=true&w=majority')
+    .connect(`mongodb+srv://admin:admin2022@alatoshnikicluster.cly0zgi.mongodb.net/alatoshniki_blog?retryWrites=true&w=majority`)
     .then(() => console.log('DB OK'))
     .catch((err) => console.log('DB ERR', err))
 
 
-const app = express();
 app.use(cors());
 app.use(fileUpload());
 app.use(express.json());
